@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="initGame()">
+    <p>Enter Your Guess Here: </p>
+    <input type="number" id="guess" name="guess">
+    <button id="guessButton" onclick="guess()">Guess</button>
+    <p id="GuessesRemaining">Guesses Remaining: 10</p>
+    <p id="LowerHigherText"></p>
+    <p id="WinLoseText"></p>
+    <p id="TimeRemaining"></p>
+    <a href="1playersettings.html"><button id="resetButton" onclick="reset()">Reset</button></a>
+    <script src="script.js"></script>
+</body>
+</html>
