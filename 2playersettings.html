@@ -12,7 +12,7 @@
     }
 
     .center {
-      transform: translateY(15%);
+      transform: translateY(10%);
       border-style: double;
       border-color: black;
       background-color: aliceblue;
@@ -64,7 +64,7 @@
     .button {
       margin-top: 2.5%;
       text-align: center;
-      margin-bottom: 7.5%;
+      margin-bottom: 2.5%;
       border-color: black;
       padding: 15px 32px;
       background-color: #04AA6D;
@@ -73,27 +73,64 @@
       cursor: pointer;
       text-align: center;
       text-decoration: none;
+      font-size: 18px;
     }
 
     .button:hover {
+      opacity: 0.75;
+    }
+    .buttonBACK:hover {
       opacity: 0.75;
     }
 
     .buttoncenter {
       text-align: center;
     }
+    .buttonBACK {
+        margin-top: 1%;
+    text-align: center;
+    margin-bottom: 5%;
+    border-color:black;
+    padding: 15px 32px;
+    background-color: #04AA6D;
+    display:inline-block;
+    color: white;
+    cursor:pointer;
+    text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+.userInput {
+    margin-top: 3.5%;
+    margin-bottom: 1.5%;
+    text-align:center;
+}
+.numText {
+    font-size: 21px;
+    font-weight:650;
+}
+.input{
+ height: 20px;
+ width: 150px;
+ font-size: 17.5px;
+}
   </style>
 </head>
 
 <body class="center" onload="reset()" onpageshow="onpageshow()">
-  <a href="index.html"><button id="backButton">Back</button></a>
   <h1 class="info">1.1.5 Rebels</h1>
-  Secret Number : <input type="number" id="secretNumber" name="secretNumber">
   <h3 id="numOfDigitsText" class="num">Number of Digits: 2 (Recommended)</h3>
   <input type="range" min="1" max="10" value="2" class="slider" id="numOfDigitsSlider" name="numOfDigitsSlider">
+  <div class="userInput">
+  <label class="numText">Secret Number :  </label>
+  <input type="number" id="secretNumber" name="secretNumber" class="input">
+  </div>
   <div class="buttoncenter">
     <a class="button" onclick="twoplayer_init()">Enter Number Of Digits</a>
   </div>
+  <div class="buttoncenter">
+    <a href="index.html" id="backButton" class="buttonBACK">Back</a>
+</div>
   <script src="script.js"></script>
 </body>
 

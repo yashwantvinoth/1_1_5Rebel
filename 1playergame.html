@@ -3,18 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GUESS!</title>
+    <style>
+        .info {
+        text-align: center;
+        margin-top: 5.5%;
+      }
+      .center {
+            transform: translateY(0%);
+            border-style:double;
+            border-color:black;
+            background-color: aliceblue;
+        }
+    .text{
+margin-top:3.5%;
+margin-left: 36.16%;
+margin-bottom:0.5%;
+    }
+.help{
+font-size: 19px;
+text-align: center;
+margin-top:2%;
+margin-bottom: 2%;
+}
+.buttoncenter {
+    text-align:center;
+}
+.button:hover {
+    opacity: 0.75;
+}
+.buttonBACK:hover {
+    opacity: 0.75;
+}
+.button {
+    text-align: center;
+    margin-bottom: 1.5%;
+    border-color:black;
+    padding: 11px 32px;
+    background-color: #04AA6D;
+    display:inline-block;
+    color: white;
+    cursor:pointer;
+    text-align: center;
+    font-size: 19px;
+  text-decoration: none;
+}
+.buttonBACK {
+    margin-top: 1%;
+    text-align: center;
+    margin-bottom: 5%;
+    border-color:black;
+    padding: 15px 32px;
+    background-color: #04AA6D;
+    display:inline-block;
+    color: white;
+    cursor:pointer;
+    text-align: center;
+  text-decoration: none;
+  font-size: 19px;
+}
+.input {
+    height:35px;
+    width: 250px;
+    font-size: 17.5px;
+}
+.inputCenter {
+    text-align: center;
+}
+.range {
+    margin-bottom: 3%;
+}
+.remaining {
+    margin-bottom: 3%;
+    font-weight: 800;
+}
+.lowerHigher {
+    margin-bottom: 3%;
+    font-weight: 800;
+}
+.winLose {
+    margin-bottom: 3%;
+    font-size: 30px;
+    font-weight: 800;
+}
+.time {
+    margin-bottom: 3%;
+    font-weight: 800;
+}
+.attempts {
+    margin-bottom: 0%;
+}
+    </style>
 </head>
-<body onload="initGame()">
-    <p>Enter Your Guess Here: </p>
-    <input type="number" id="guess" name="guess">
-    <button id="guessButton" onclick="guess()">Guess</button>
-    <p id="NumberRange">Number Range: 0 - 99</p>
-    <p id="GuessesRemaining">Guesses Remaining: 10</p>
-    <p id="LowerHigherText"></p>
-    <p id="WinLoseText"></p>
-    <p id="TimeRemaining">Time Remaining: 30</p>
-    <a href="index.html"><button id="resetButton" onclick="reset()">Reset/Back</button></a>
+<body onload="initGame()" class="center">
+    <h1 class="info">1.1.5 Rebels</h1>
+    <h3 class="text">Enter Your Guess Here: </h3>
+    <div class="inputCenter">
+    <input type="number" id="guess" name="guess" class="input">
+    <a class="button" id="guessButton" onclick="guess()">Guess</a>
+    </div>
+    <div class="help">
+    <p id="NumberRange" class="range">Number Range: 0 - 99</p>
+    <p id="GuessesRemaining" class="remaining">Guesses Remaining: 10</p>
+    <p id="LowerHigherText" class="lowerHigher"></p>
+    <p id="WinLoseText" class="winLose"></p>
+    <p id="TimeRemaining" class="time">Time Remaining: 30</p>
+    <p id="PreviousAttempts" class="attempts"></p>
+    </div>
+    <div class="buttoncenter">
+    <a href="index.html" id="resetButton" onclick="reset()" class="buttonBACK">Play Again or Back</a>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

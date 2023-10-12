@@ -1,4 +1,3 @@
-
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -61,20 +60,25 @@ function twoplayer_init() {
 function initGame() {
     function timerInt() {
         var timeRemaining = getCookie("timeRemaining");
-        timeRemaining = timeRemaining - 1;
-        document.cookie = "timeRemaining=" + timeRemaining;
-        document.getElementById("TimeRemaining").textContent = "Time Remaining: " + timeRemaining;
-        if (timeRemaining == 0) {
-          clearInterval(timerId);
-          document.getElementById("LowerHigherText").textContent = "The Number Was " + getCookie("secretNumber"); 
-          reset();
-          document.getElementById("WinLoseText").textContent = "You Lose";
-          document.getElementById("TimeRemaining").textContent = "You ran out of time!";
-          document.getElementById("guess").disabled = true;
-          document.getElementById("guessButton").disabled = true;
-          document.getElementById("resetButton").textContent = "Play Again/Back";
+        if (timeRemaining == "resetted") {
+            clearInterval(timerId);
+            document.getElementById("TimeRemaining").textContent = "";
+        } else {
+            timeRemaining = timeRemaining - 1;
+            document.cookie = "timeRemaining=" + timeRemaining;
+            document.getElementById("TimeRemaining").textContent = "Time Remaining: " + timeRemaining;
+            if (timeRemaining == 0) {
+              clearInterval(timerId);
+              document.getElementById("LowerHigherText").textContent = "The Number Was " + getCookie("secretNumber"); 
+              reset();
+              document.getElementById("WinLoseText").textContent = "You Lose";
+              document.getElementById("TimeRemaining").textContent = "You ran out of time!";
+              document.getElementById("guess").disabled = true;
+              document.getElementById("guessButton").disabled = true;
+              document.getElementById("resetButton").textContent = "Play Again/Back";
+            }
         }
-      }
+    }
     
     if (getCookie("secretNumber") == "resetted") {
       location.assign("index.html");
@@ -101,27 +105,30 @@ function guess() {
         document.getElementById("LowerHigherText").textContent = "Please Enter A Number Between 0 And " + maxNumber;
         document.getElementById("WinLoseText").textContent = "";
     } else if (guess > secretNumber) {
-        document.getElementById("guess").value = "";
+        document.getElementById("LowerHigherText").textContent = "Guess Lower";
         guessesRemaining = guessesRemaining - 1;
         document.cookie = "guessesRemaining=" + guessesRemaining;
+        document.getElementById("PreviousAttempts").innerHTML = document.getElementById("PreviousAttempts").innerHTML + "Attempt " + (10 - guessesRemaining) + ": " + document.getElementById("guess").value + "<br>Generated Response: " + document.getElementById("LowerHigherText").textContent + "<br><br>";
+        document.getElementById("guess").value = "";
         document.getElementById("GuessesRemaining").textContent = "Guesses Remaining: " + guessesRemaining;
-        document.getElementById("LowerHigherText").textContent = "Guess Lower";
         document.getElementById("WinLoseText").textContent = "";
     } else if (guess < secretNumber) {
-        document.getElementById("guess").value = "";
+        document.getElementById("LowerHigherText").textContent = "Guess Higher";
         guessesRemaining = guessesRemaining - 1;
         document.cookie = "guessesRemaining=" + guessesRemaining;
+        document.getElementById("PreviousAttempts").innerHTML = document.getElementById("PreviousAttempts").innerHTML + "Attempt " + (10 - guessesRemaining) + ": " + document.getElementById("guess").value + "<br>Generated Response: " + document.getElementById("LowerHigherText").textContent + "<br><br>";
+        document.getElementById("guess").value = "";
         document.getElementById("GuessesRemaining").textContent = "Guesses Remaining: " + guessesRemaining;
-        document.getElementById("LowerHigherText").textContent = "Guess Higher";
         document.getElementById("WinLoseText").textContent = "";
     } else if (guess == secretNumber) {
+        guessesRemaining = guessesRemaining - 1;
+        document.cookie = "guessesRemaining=" + guessesRemaining;
+        document.getElementById("LowerHigherText").textContent = "Congratulations! You Guessed The Number!";
+        document.getElementById("PreviousAttempts").innerHTML = document.getElementById("PreviousAttempts").innerHTML + "Attempt " + (10 - guessesRemaining) + ": " + document.getElementById("guess").value + "<br>Generated Response: " + document.getElementById("LowerHigherText").textContent + "<br><br>";
         reset()
         document.getElementById("guess").value = "";
-        guessesRemaining = guessesRemaining - 1;
-        document.cookie = "guessesRemaining= ";
-        document.getElementById("GuessesRemaining").textContent = "Guesses Remaining: " + guessesRemaining;
-        document.getElementById("LowerHigherText").textContent = "Congradulations!";
         document.getElementById("WinLoseText").textContent = "You Win";
+        document.getElementById("TimeRemaining").textContent = "";
         document.getElementById("guess").disabled = true;
         document.getElementById("guessButton").disabled = true;
         document.getElementById("resetButton").textContent = "Play Again/Back";
@@ -132,6 +139,7 @@ function guess() {
         document.getElementById("GuessesRemaining").textContent = "Out of Guesses";
         document.getElementById("LowerHigherText").textContent = "The Number Was " + secretNumber;
         document.getElementById("WinLoseText").textContent = "You Lose";
+        document.getElementById("TimeRemaining").textContent = "";
         document.getElementById("guess").disabled = true;
         document.getElementById("guessButton").disabled = true;
         document.getElementById("resetButton").textContent = "Play Again/Back";
