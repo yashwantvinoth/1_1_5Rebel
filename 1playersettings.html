@@ -37,10 +37,11 @@
         }
         </style>
 </head>
-<body>
+<body onload="reset()">
+  <a href="index.html"><button id="backButton">Back</button></a>
     <input type="range" min="1" max="10" value="2" class="slider" id="numOfDigitsSlider">
     <p id="numOfDigitsText">Number Of Digits: 2 (Recommended)</p>
-    <a href="1playergame.html"><button onclick="oneplayer_init()">Enter Number Of Digits</button></a>
+    <button onclick="oneplayer_init()">Enter Number Of Digits</button>
     <script src="script.js"></script>
 </body>
 </html>
