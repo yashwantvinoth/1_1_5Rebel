@@ -87,13 +87,13 @@ function initGame() {
       document.getElementById("NumberRange").textContent = "Number Range: 0 - " + getCookie("maxNumber");
       var timerId = setInterval(timerInt, 1000);
     }
-  }
 
-function de_initGame() {
-    document.cookie = "guessesRemaining=resetted";
-    document.cookie = "secretNumber=resetted";
-    document.cookie = "maxNumber=resetted";
-}
+    if (getCookie("music") == "playing") {
+        playMusic();
+    } else if (getCookie("music") == "paused") {
+        pauseMusic();
+    }
+  }
 
 function guess() {
     let secretNumber = Number(getCookie("secretNumber"));
@@ -151,6 +151,11 @@ function reset() {
     document.cookie = "secretNumber=resetted";
     document.cookie = "maxNumber=resetted";
     document.cookie = "timeRemaining=resetted";
+    if (getCookie("music") == "playing") {
+        playMusic();
+    } else if (getCookie("music") == "paused") {
+        pauseMusic();
+    }
 }
 
 function onpageshow(){
@@ -159,4 +164,14 @@ function onpageshow(){
         document.getElementById("secretNumber").value = "";
         document.getElementById("numOfDigitsSlider").value = 2;
       }
+}
+
+function pauseMusic() {
+    document.cookie = "music=paused";
+    document.getElementById("audio").pause();
+}
+
+function playMusic() {
+    document.cookie = "music=playing";
+    document.getElementById("audio").play();
 }
